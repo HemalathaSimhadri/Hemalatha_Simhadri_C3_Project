@@ -69,6 +69,8 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<<<<<<<<< Testcases for findTotalPrice >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     @Test
     public void findTotalPrice_should_return_positive_value_if_items_are_found_in_the_menu() throws itemNotFoundException {
 
