@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.*;
 
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,4 +66,21 @@ class RestaurantServiceTest {
         assertEquals(initialNumberOfRestaurants + 1,service.getRestaurants().size());
     }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<<<<<<<<< Testcases for getSelectedItemsTotalPricesFromRestaurant >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void getSelectedItemsTotalPricesFromRestaurant_should_return_positive_value_if_items_are_found() throws restaurantNotFoundException {
+
+        List<String> itemList = Arrays.asList("Sweet corn soup", "Vegetable lasagne");
+        int totalPrice = service.getSelectedItemsTotalPricesFromRestaurant("Amelie's cafe", itemList);
+        assertTrue(totalPrice>0);
+    }
+    @Test
+    public void getSelectedItemsTotalPricesFromRestaurant_should_return_zero_if_items_are_not_found() throws restaurantNotFoundException {
+
+        List<String> itemList = Arrays.asList("Sweet corn soup not in menu", "Vegetable lasagne not in menu");
+        int totalPrice = service.getSelectedItemsTotalPricesFromRestaurant("Amelie's cafe", itemList);
+        assertTrue(totalPrice == 0);
+    }
+
 }

@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -67,4 +69,18 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void findTotalPrice_should_return_positive_value_if_items_are_found_in_the_menu() throws itemNotFoundException {
+
+        List<String> itemList = Arrays.asList("Sweet corn soup", "Vegetable lasagne");
+        int totalPrice = restaurant.findTotalPrice(itemList);
+        assertTrue(totalPrice>0);
+    }
+    @Test
+    public void findTotalPrice_should_return_zero_value_if_items_are_found_in_the_menu() throws itemNotFoundException {
+
+        List<String> itemList = Arrays.asList("Sweet corn soup not in the menu", "Vegetable lasagne not in the menu");
+        int totalPrice = restaurant.findTotalPrice(itemList);
+        assertTrue(totalPrice>0);
+    }
 }
